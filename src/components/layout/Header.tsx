@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,12 +25,14 @@ const Header = () => {
   }, []);
 
   const navItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'Features', href: '#features' },
-    { name: 'How It Works', href: '#how-it-works' },
-    { name: 'Tokenomics', href: '#tokenomics' },
-    { name: 'Team', href: '#team' },
-    { name: 'FAQ', href: '#faq' },
+    { name: 'Home', href: '/' },
+    ...(isHomePage ? [
+      { name: 'Features', href: '#features' },
+      { name: 'How It Works', href: '#how-it-works' },
+      { name: 'Tokenomics', href: '#tokenomics' },
+      { name: 'Team', href: '#team' },
+      { name: 'FAQ', href: '#faq' },
+    ] : []),
   ];
 
   return (
@@ -38,29 +43,29 @@ const Header = () => {
     >
       <div className="container mx-auto">
         <div className="flex items-center justify-between py-4">
-          <a href="#" className="flex items-center space-x-2">
+          <Link to="/" className="flex items-center space-x-2">
             <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-400 to-secondary-500">
               CryptoNexus
             </span>
-          </a>
+          </Link>
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.name}
-                href={item.href}
+                to={item.href.startsWith('#') ? `/${item.href}` : item.href}
                 className="text-gray-300 hover:text-white transition-colors duration-300"
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
           </nav>
           
           <div className="hidden md:flex items-center space-x-4">
-            <a href="#" className="btn btn-outline">
+            <Link to="/whitepaper" className="btn btn-outline">
               Whitepaper
-            </a>
+            </Link>
             <a href="#" className="btn btn-primary">
               Launch App
             </a>
@@ -89,19 +94,19 @@ const Header = () => {
           <div className="container mx-auto py-4">
             <nav className="flex flex-col space-y-4">
               {navItems.map((item) => (
-                <a
+                <Link
                   key={item.name}
-                  href={item.href}
+                  to={item.href.startsWith('#') ? `/${item.href}` : item.href}
                   className="text-gray-300 hover:text-white py-2 transition-colors duration-300"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.name}
-                </a>
+                </Link>
               ))}
               <div className="pt-4 flex flex-col space-y-3">
-                <a href="#" className="btn btn-outline w-full">
+                <Link to="/whitepaper" className="btn btn-outline w-full" onClick={() => setIsOpen(false)}>
                   Whitepaper
-                </a>
+                </Link>
                 <a href="#" className="btn btn-primary w-full">
                   Launch App
                 </a>
