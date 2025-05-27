@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const location = useLocation();
-  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,15 +21,20 @@ const Header = () => {
     };
   }, []);
 
+  const scrollToNewsletter = () => {
+    const newsletterSection = document.querySelector('#newsletter');
+    if (newsletterSection) {
+      newsletterSection.scrollIntoView({ behavior: 'smooth' });
+      setIsOpen(false);
+    }
+  };
+
   const navItems = [
-    { name: 'Home', href: '/' },
-    ...(isHomePage ? [
-      { name: 'Features', href: '#features' },
-      { name: 'How It Works', href: '#how-it-works' },
-      { name: 'Tokenomics', href: '#tokenomics' },
-      { name: 'Team', href: '#team' },
-      { name: 'FAQ', href: '#faq' },
-    ] : []),
+    { name: 'Home', href: '#home' },
+    { name: 'Features', href: '#features' },
+    { name: 'How It Works', href: '#how-it-works' },
+    { name: 'Testimonials', href: '#testimonials' },
+    { name: 'FAQ', href: '#faq' },
   ];
 
   return (
@@ -43,32 +45,32 @@ const Header = () => {
     >
       <div className="container mx-auto">
         <div className="flex items-center justify-between py-4">
-          <Link to="/" className="flex items-center space-x-2">
+          <a href="#home" className="flex items-center space-x-2">
             <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-400 to-secondary-500">
               CryptoNexus
             </span>
-          </Link>
+          </a>
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <Link
+              <a
                 key={item.name}
-                to={item.href.startsWith('#') ? `/${item.href}` : item.href}
+                href={item.href}
                 className="text-gray-300 hover:text-white transition-colors duration-300"
               >
                 {item.name}
-              </Link>
+              </a>
             ))}
           </nav>
           
           <div className="hidden md:flex items-center space-x-4">
-            <Link to="/whitepaper" className="btn btn-outline">
-              Whitepaper
-            </Link>
-            <a href="#" className="btn btn-primary">
-              Launch App
-            </a>
+            <button
+              onClick={scrollToNewsletter}
+              className="btn btn-primary"
+            >
+              Subscribe
+            </button>
           </div>
           
           {/* Mobile Navigation Toggle */}
@@ -94,22 +96,22 @@ const Header = () => {
           <div className="container mx-auto py-4">
             <nav className="flex flex-col space-y-4">
               {navItems.map((item) => (
-                <Link
+                <a
                   key={item.name}
-                  to={item.href.startsWith('#') ? `/${item.href}` : item.href}
+                  href={item.href}
                   className="text-gray-300 hover:text-white py-2 transition-colors duration-300"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.name}
-                </Link>
+                </a>
               ))}
               <div className="pt-4 flex flex-col space-y-3">
-                <Link to="/whitepaper" className="btn btn-outline w-full" onClick={() => setIsOpen(false)}>
-                  Whitepaper
-                </Link>
-                <a href="#" className="btn btn-primary w-full">
-                  Launch App
-                </a>
+                <button
+                  onClick={scrollToNewsletter}
+                  className="btn btn-primary w-full"
+                >
+                  Subscribe
+                </button>
               </div>
             </nav>
           </div>
