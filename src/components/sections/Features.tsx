@@ -1,7 +1,14 @@
-import React from 'react';
-import { Shield, TrendingUp, ArrowRightLeft, Zap, Users, Globe } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import React from "react";
+import {
+  Shield,
+  TrendingUp,
+  ArrowRightLeft,
+  Zap,
+  Users,
+  Globe,
+} from "lucide-react";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const FeatureCard = ({ icon, title, description, delay }) => {
   const [ref, inView] = useInView({
@@ -35,41 +42,47 @@ const Features = () => {
   const features = [
     {
       icon: <Shield className="text-primary-400" />,
-      title: "Enhanced Security",
-      description: "Bank-grade encryption and multi-signature wallets protect your assets with institutional-level security.",
+      title: "Full decentralization",
+      description:
+        "The project is based on an open BSC smart contract, which guarantees reliability, transparency and eliminates any kind of risks",
     },
     {
       icon: <TrendingUp className="text-primary-400" />,
-      title: "High Yield Returns",
-      description: "Our smart contract algorithms automatically find the highest yield opportunities across DeFi protocols.",
+      title: "The absence of an administrator and a money vault",
+      description:
+        "No one can manage the project, they cannot change its terms, and the gifts are immediately distributed to the wallets of the partners.",
     },
     {
       icon: <ArrowRightLeft className="text-primary-400" />,
-      title: "Cross-Chain Swaps",
-      description: "Seamlessly swap assets across multiple blockchain networks with minimal gas fees and slippage.",
+      title: "Profitability",
+      description:
+        "With us, absolutely anyone with just $8 to start can become a dollar millionaire in the first year.",
     },
-    {
-      icon: <Zap className="text-primary-400" />,
-      title: "Lightning Fast",
-      description: "Transactions confirm in seconds, not minutes, thanks to our layer-2 scaling solutions.",
-    },
-    {
-      icon: <Users className="text-primary-400" />,
-      title: "Community Governance",
-      description: "Token holders vote on protocol upgrades and treasury allocation through our DAO structure.",
-    },
-    {
-      icon: <Globe className="text-primary-400" />,
-      title: "Global Accessibility",
-      description: "Available worldwide with support for multiple languages and fiat on-ramps from 180+ countries.",
-    },
+    // {
+    //   icon: <Zap className="text-primary-400" />,
+    //   title: "Idea",
+    //   description:
+    //     "What could be better than realizing both your dreams and the dreams of others at the same time? To see those who create a dream life every day and to be one of them yourself!",
+    // },
+    // {
+    //   icon: <Users className="text-primary-400" />,
+    //   title: "Community Governance",
+    //   description:
+    //     "Token holders vote on protocol upgrades and treasury allocation through our DAO structure.",
+    // },
+    // {
+    //   icon: <Globe className="text-primary-400" />,
+    //   title: "Global Accessibility",
+    //   description:
+    //     "Available worldwide with support for multiple languages and fiat on-ramps from 180+ countries.",
+    // },
   ];
 
   return (
     <section id="features" className="section bg-dark-400 relative">
       {/* Background decoration */}
       <div className="absolute top-0 inset-x-0 h-40 bg-dark-300 -skew-y-3 transform origin-top-right"></div>
-      
+
       <div className="container mx-auto relative z-10">
         <motion.div
           ref={ref}
@@ -81,12 +94,19 @@ const Features = () => {
           <span className="inline-block px-4 py-1 bg-primary-500/10 text-primary-400 rounded-full text-sm font-medium mb-4">
             Key Features
           </span>
-          <h2 className="mb-4">Why Choose <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-400 to-secondary-500">CryptoNexus</span></h2>
+          <h2 className="mb-4">
+            Why Choose{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-400 to-secondary-500">
+              Crypto Gifts
+            </span>
+          </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Our platform combines cutting-edge technology with user-friendly interfaces to deliver a superior cryptocurrency experience.
+            The Crypto Gifts system is based on the gratuitous and decentralized
+            donation of USDT on the BSC network. Probably, each of us dreamed
+            that many people would give us even a very small amount.
           </p>
         </motion.div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((feature, index) => (
             <FeatureCard

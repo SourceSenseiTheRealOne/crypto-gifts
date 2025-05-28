@@ -89,7 +89,7 @@ const Testimonials = () => {
             What Our Users Say
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Hear directly from our community members about their experiences with CryptoNexus and how it has transformed their approach to DeFi.
+            Hear directly from our community members about their experiences with Crypto Gifts and how it has transformed their approach to DeFi.
           </p>
         </motion.div>
 

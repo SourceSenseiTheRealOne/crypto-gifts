@@ -46,8 +46,13 @@ const Header = () => {
       <div className="container mx-auto">
         <div className="flex items-center justify-between py-4">
           <a href="#home" className="flex items-center space-x-2">
-            <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-400 to-secondary-500">
-              CryptoNexus
+            <img 
+              src="/crypto-gifts-logo.png" 
+              alt="CryptoGifts Logo" 
+              className="h-8 w-auto"
+            />
+            <span className="text-gray-300 hover:text-white transition-colors duration-300">
+              Crypto Gifts
             </span>
           </a>
           

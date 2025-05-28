@@ -112,7 +112,7 @@ const Team = () => {
           <span className="inline-block px-4 py-1 bg-primary-500/10 text-primary-400 rounded-full text-sm font-medium mb-4">
             Our Team
           </span>
-          <h2 className="mb-4">The <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-400 to-secondary-500">People</span> Behind CryptoNexus</h2>
+          <h2 className="mb-4">The <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-400 to-secondary-500">People</span> Behind Crypto Gifts</h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
             Our team combines expertise in blockchain technology, finance, and security to deliver a revolutionary crypto platform.
           </p>
