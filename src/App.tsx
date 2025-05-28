@@ -7,6 +7,9 @@ import FAQ from './components/sections/FAQ';
 import Newsletter from './components/sections/Newsletter';
 import Footer from './components/layout/Footer';
 import Testimonials from './components/sections/Testimonials';
+import Distribution from './components/sections/Distribution';
+import PotentialProfits from './components/sections/PotentialProfits';
+import SystemExplanation from './components/sections/SystemExplanation';
 
 function App() {
   return (
@@ -17,6 +20,9 @@ function App() {
         <Hero />
         <Features />
         <HowItWorks />
+        <SystemExplanation />
+        <Distribution />
+        <PotentialProfits />
         <Testimonials />
         <FAQ />
         <Newsletter />
