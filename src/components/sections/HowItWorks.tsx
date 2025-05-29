@@ -156,7 +156,7 @@ const HowItWorks = () => {
               className="mt-10"
             >
               <a 
-                href="https://metamask.io/download" 
+                href="https://cryptogifts.charity/dashboard?ref=124" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="btn btn-primary"

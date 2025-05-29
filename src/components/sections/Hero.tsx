@@ -146,31 +146,31 @@ const Hero = () => {
           className="mt-20 text-center"
         >
           <p className="text-gray-500 mb-6">Trusted by industry leaders</p>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-70">
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
             <img
-              src="https://upload.wikimedia.org/wikipedia/commons/1/19/Coinbase_logo.svg"
+              src="/coinbase-logo-removebg-preview.png"
               alt="Coinbase"
-              className="h-6 grayscale hover:grayscale-0 transition-all duration-300"
+              className="h-8 transition-all duration-300"
             />
             <img
-              src="https://cryptologos.cc/logos/binance-coin-bnb-logo.svg"
+              src="/binance-logo-removebg-preview.png"
               alt="Binance"
-              className="h-8 grayscale hover:grayscale-0 transition-all duration-300"
+              className="h-8 transition-all duration-300"
             />
             <img
-              src="https://cryptologos.cc/logos/polygon-matic-logo.svg"
+              src="/polygon-logo-removebg-preview.png"
               alt="Polygon"
-              className="h-6 grayscale hover:grayscale-0 transition-all duration-300"
+              className="h-8 transition-all duration-300"
             />
             <img
-              src="https://cryptologos.cc/logos/chainlink-link-logo.svg"
+              src="/chainlink-logo-removebg-preview.png"
               alt="Chainlink"
-              className="h-6 grayscale hover:grayscale-0 transition-all duration-300"
+              className="h-8 transition-all duration-300"
             />
             <img
-              src="https://cryptologos.cc/logos/avalanche-avax-logo.svg"
+              src="/avalanche-logo.png"
               alt="Avalanche"
-              className="h-6 grayscale hover:grayscale-0 transition-all duration-300"
+              className="h-8 transition-all duration-300"
             />
           </div>
         </motion.div>

@@ -14,12 +14,12 @@ const Footer = () => {
               The world's first fully decentralized gift system based on USDT on the BSC network.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-primary-500 transition-colors duration-300">
+              <span className="text-gray-600 cursor-not-allowed opacity-50">
                 <Twitter size={20} />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-primary-500 transition-colors duration-300">
+              </span>
+              <span className="text-gray-600 cursor-not-allowed opacity-50">
                 <MessageCircle size={20} />
-              </a>
+              </span>
             </div>
           </div>
           
