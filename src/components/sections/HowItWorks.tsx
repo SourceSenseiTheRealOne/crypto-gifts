@@ -93,14 +93,14 @@ const HowItWorks = () => {
   const steps = [
     {
       number: "01",
-      title: "Create a Metamask Wallet",
-      description: "Download and set up your Metamask wallet - your gateway to the decentralized world. It's free, secure, and takes just a few minutes to get started.",
+      title: "Create a Metamask or Trust Wallet",
+      description: "Download and set up your Metamask or Trust Wallet - your gateway to the decentralized world. It's free, secure, and takes just a few minutes to get started.",
       icon: <Wallet className="text-primary-400" size={20} />,
     },
     {
       number: "02",
-      title: "Get Referral Link",
-      description: "Obtain your unique referral link that you can share with friends and family. Each referral brings rewards and helps grow the CryptoGifts community.",
+      title: "Copy Referral Link",
+      description: "Copy the referral link by clicking on the button below. Share it with friends and family to grow the CryptoGifts community and earn rewards.",
       icon: <Link className="text-primary-400" size={20} />,
     },
     {
@@ -112,7 +112,7 @@ const HowItWorks = () => {
     {
       number: "04",
       title: "Buy & Share",
-      description: "Purchase CryptoGifts tokens and share them with your network. Watch as your community grows and rewards multiply through our innovative gifting system.",
+      description: "Purchase CryptoGifts tokens and share them with your network. Follow the video instructions to maximize your rewards.",
       icon: <Share2 className="text-primary-400" size={20} />,
     },
   ];
@@ -153,16 +153,25 @@ const HowItWorks = () => {
               initial={{ opacity: 0 }}
               animate={inView ? { opacity: 1 } : { opacity: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
-              className="mt-10"
+              className="mt-10 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4"
             >
               <a 
-                href="https://cryptogifts.charity/dashboard?ref=124" 
+                href="https://metamask.io/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="btn btn-primary"
               >
                 Start Now <ArrowRight size={18} className="ml-2" />
               </a>
+              <button 
+                onClick={() => {
+                  navigator.clipboard.writeText('https://cryptogifts.charity/dashboard?ref=0');
+                  alert('Referral link copied to clipboard!');
+                }} 
+                className="btn btn-outline"
+              >
+                Copy Referral Link <Link size={18} className="ml-2" />
+              </button>
             </motion.div>
           </motion.div>
           

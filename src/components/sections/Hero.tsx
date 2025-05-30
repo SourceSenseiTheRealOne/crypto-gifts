@@ -28,6 +28,9 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src }) => {
         className="w-full h-full object-cover"
         playsInline
         onClick={togglePlay}
+        loop
+        autoPlay
+        muted
       >
         <source src={src} type="video/mp4" />
         Your browser does not support the video tag.
@@ -86,7 +89,7 @@ const Hero = () => {
                   Crypto Gifts
                 </span>
               </h1>
-              <p className="text-gray-400 max-w-2xl mx-auto lg:mx-0">
+              <p className="text-gray-400 max-w-xl mx-auto lg:mx-0">
                 Crypto Gifts is the world's first fully decentralized gift
                 system in which all people help each other realize their
                 personal financial dreams.
@@ -127,10 +130,10 @@ const Hero = () => {
               transition={{ delay: 0.3, duration: 0.6 }}
               className="relative flex justify-center lg:justify-end"
             >
-              <div className="bg-dark-200 p-4 rounded-2xl shadow-xl max-w-[280px]">
-                <div className="relative rounded-xl overflow-hidden max-h-[460px]" style={{ aspectRatio: '9/16' }}>
+              <div className="bg-dark-200 p-4 rounded-2xl shadow-xl max-w-[600px]">
+                <div className="relative rounded-xl overflow-hidden max-h-[460px]" style={{ aspectRatio: '16/9' }}>
                   <VideoPlayer 
-                    src="https://res.cloudinary.com/dzxalfzwh/video/upload/v1748428078/rtlgcia47z08haqvyiwu.mp4" 
+                    src="https://res.cloudinary.com/dzxalfzwh/video/upload/v1748599761/jgojal925vmaefj6bojh.mp4" 
                   />
                 </div>
               </div>
