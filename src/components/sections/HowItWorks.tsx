@@ -165,8 +165,15 @@ const HowItWorks = () => {
               </a>
               <button 
                 onClick={() => {
-                  navigator.clipboard.writeText('https://cryptogifts.charity/dashboard?ref=0');
-                  alert('Referral link copied to clipboard!');
+                  const referralLink = 'https://cryptogifts.charity/dashboard?ref=124';
+                  console.log('Copying referral link:', referralLink);
+                  navigator.clipboard.writeText(referralLink).then(() => {
+                    console.log('Successfully copied:', referralLink);
+                    alert('Referral link copied to clipboard!');
+                  }).catch(err => {
+                    console.error('Failed to copy:', err);
+                    alert('Failed to copy referral link. Please try again.');
+                  });
                 }} 
                 className="btn btn-outline"
               >

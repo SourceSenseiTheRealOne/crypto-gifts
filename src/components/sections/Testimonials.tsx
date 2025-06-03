@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Play } from 'lucide-react';
@@ -7,15 +7,29 @@ interface VideoTestimonialProps {
   name: string;
   role: string;
   videoUrl: string;
-  thumbnailUrl: string;
   delay: number;
 }
 
-const VideoTestimonial: React.FC<VideoTestimonialProps> = ({ name, role, videoUrl, thumbnailUrl, delay }) => {
+const VideoTestimonial: React.FC<VideoTestimonialProps> = ({ name, role, videoUrl, delay }) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
+
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const handlePlayClick = () => {
+    if (videoRef.current) {
+      if (!isPlaying) {
+        videoRef.current.play();
+        setIsPlaying(true);
+      } else {
+        videoRef.current.pause();
+        setIsPlaying(false);
+      }
+    }
+  };
 
   return (
     <motion.div
@@ -25,23 +39,25 @@ const VideoTestimonial: React.FC<VideoTestimonialProps> = ({ name, role, videoUr
       transition={{ duration: 0.5, delay }}
       className="card overflow-hidden"
     >
-      <div className="relative aspect-video mb-4 rounded-lg overflow-hidden group cursor-pointer">
+      <div className="relative mb-4 rounded-lg overflow-hidden group cursor-pointer" style={{ maxWidth: '300px', height: '534px', margin: '0 auto' }}>
         <video
+          ref={videoRef}
           className="w-full h-full object-cover"
-          poster={thumbnailUrl}
-          controls
+          onClick={handlePlayClick}
         >
           <source src={videoUrl} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-        <div className="absolute inset-0 bg-dark-300/50 flex items-center justify-center group-hover:bg-dark-300/30 transition-all duration-300">
-          <div className="w-16 h-16 rounded-full bg-primary-500 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-            <Play className="text-white ml-1" size={24} />
+        {!isPlaying && (
+          <div className="absolute inset-0 bg-dark-300/50 flex items-center justify-center group-hover:bg-dark-300/30 transition-all duration-300" onClick={handlePlayClick}>
+            <div className="w-16 h-16 rounded-full bg-primary-500 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <Play className="text-white ml-1" size={24} />
+            </div>
           </div>
-        </div>
+        )}
       </div>
-      <h3 className="text-xl font-semibold mb-1">{name}</h3>
-      <p className="text-gray-400">{role}</p>
+      <h3 className="text-xl font-semibold mb-1 text-center">{name}</h3>
+      <p className="text-gray-400 text-center">{role}</p>
     </motion.div>
   );
 };
@@ -56,20 +72,17 @@ const Testimonials = () => {
     {
       name: "Sarah Johnson",
       role: "Investment Manager",
-      videoUrl: "/videos/testimonial1.mp4",
-      thumbnailUrl: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      videoUrl: "https://res.cloudinary.com/dzxalfzwh/video/upload/v1748947298/WhatsApp_Video_2025-06-01_at_22.52.25_sc6uj9.mp4",
     },
     {
       name: "Michael Chen",
       role: "Crypto Entrepreneur",
-      videoUrl: "/videos/testimonial2.mp4",
-      thumbnailUrl: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      videoUrl: "https://res.cloudinary.com/dzxalfzwh/video/upload/v1748947298/WhatsApp_Video_2025-05-30_at_20.00.05_rrmxfm.mp4",
     },
     {
       name: "Emily Rodriguez",
       role: "DeFi Developer",
-      videoUrl: "/videos/testimonial3.mp4",
-      thumbnailUrl: "https://images.pexels.com/photos/3760514/pexels-photo-3760514.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      videoUrl: "https://res.cloudinary.com/dzxalfzwh/video/upload/v1748947298/WhatsApp_Video_2025-05-31_at_20.45.04_cfsxxc.mp4",
     },
   ];
 
@@ -89,7 +102,7 @@ const Testimonials = () => {
             What Our Users Say
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Hear directly from our community members about their experiences with Crypto Gifts and how it has transformed their approach to DeFi.
+            Hear directly from our community members about their experiences with Crypto Gifts and how it has transformed their approach to Web3.
           </p>
         </motion.div>
 
