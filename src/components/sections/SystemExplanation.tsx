@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Network, Gift, Users, ArrowDownToLine, ArrowRightToLine } from "lucide-react";
+import { Network, Gift, Users, ArrowDownToLine, ArrowRightToLine, Play } from "lucide-react";
 
 interface ExplanationStepProps {
   icon: React.ReactNode;
@@ -9,6 +9,51 @@ interface ExplanationStepProps {
   description: string;
   delay: number;
 }
+
+interface VideoPlayerProps {
+  src: string;
+}
+
+const VideoPlayer: React.FC<VideoPlayerProps> = ({ src }) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const togglePlay = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  return (
+    <>
+      <video
+        ref={videoRef}
+        className="w-full h-full object-cover"
+        playsInline
+        onClick={togglePlay}
+      >
+        <source src={src} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      
+      {!isPlaying && (
+        <div 
+          className="absolute inset-0 flex items-center justify-center bg-black/30 cursor-pointer"
+          onClick={togglePlay}
+        >
+          <div className="w-16 h-16 rounded-full bg-primary-500/90 flex items-center justify-center hover:bg-primary-600 transition-colors duration-300">
+            <Play size={32} className="text-white ml-1" />
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
 
 const ExplanationStep: React.FC<ExplanationStepProps> = ({ icon, title, description, delay }) => {
   const [ref, inView] = useInView({
@@ -102,30 +147,17 @@ const SystemExplanation = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
             className="relative"
           >
-            <div className="card p-8 relative">
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary-500/10 rounded-full flex items-center justify-center">
-                <Users className="text-primary-400 w-12 h-12" />
+            <div className="bg-dark-200 p-4 rounded-2xl shadow-xl max-w-[320px] mx-auto">
+              <div className="relative rounded-xl overflow-hidden" style={{ aspectRatio: '9/16' }}>
+                <VideoPlayer 
+                  src="https://res.cloudinary.com/dzxalfzwh/video/upload/v1749052585/VID-20250421-WA0006_1_kfs0l5.mp4" 
+                />
               </div>
-              <h3 className="text-2xl font-semibold mb-4">Key Benefits</h3>
-              <ul className="space-y-4">
-                <li className="flex items-start space-x-3">
-                  <ArrowRightToLine className="text-primary-400 flex-shrink-0 mt-1" size={18} />
-                  <span className="text-gray-400">Regular income generation for superior partners</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <ArrowRightToLine className="text-primary-400 flex-shrink-0 mt-1" size={18} />
-                  <span className="text-gray-400">Progressive level-based gift system</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <ArrowRightToLine className="text-primary-400 flex-shrink-0 mt-1" size={18} />
-                  <span className="text-gray-400">Rewards for both active and passive participants</span>
-                </li>
-              </ul>
             </div>
           </motion.div>
         </div>
